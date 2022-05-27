@@ -12,12 +12,13 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayBlockingQueue<String> filaPublicacao = new ArrayBlockingQueue<>(10);
-        GravaPodcast gravaPoscast = new GravaPodcast(filaPublicacao);
+        
+        GravaPodcast gravaPodcast = new GravaPodcast(filaPublicacao);
         PublicaPodcast publicaPodcast = new PublicaPodcast(filaPublicacao);
 
-        Thread gravaPodcastThread = new Thread(gravaPoscast);
+        Thread gravaPodcastThread = new Thread(gravaPodcast);
         Thread publicaPodcastThread = new Thread(publicaPodcast);
-          
+        
         gravaPodcastThread.start();
         publicaPodcastThread.start();
         

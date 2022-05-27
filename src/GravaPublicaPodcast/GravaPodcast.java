@@ -64,6 +64,7 @@ public class GravaPodcast extends Thread {
             try {
                 
                 getFilaPublicacao().put(getAssunto());
+                
                 Thread.sleep(1000);
                 
             } catch (Exception e) {

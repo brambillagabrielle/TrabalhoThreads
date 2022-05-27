@@ -30,8 +30,13 @@ public class PublicaPodcast extends Thread {
         return assuntoGravado;
     }
     
+    /**
+    * Método mostra a publicação, com o número de episódio e assunto do podcast
+    * que foi publicado.
+    */
     public void mostraPublicacao(int episodio) {
-        System.out.println("Publicado: Ep #" + episodio + " - " + getAssuntoGravado());
+        System.out.println("Publicado: Ep #" + episodio
+                            + " - " + getAssuntoGravado());
     }
     
     /**
@@ -51,6 +56,7 @@ public class PublicaPodcast extends Thread {
                 if (!getFilaPublicacao().isEmpty()) {
                     
                     episodio++;
+                    
                     setAssuntoGravado(getFilaPublicacao().take());
                     mostraPublicacao(episodio);
                     

@@ -1,9 +1,10 @@
 package GravaPublicaPodcast;
 
 /**
- *
- * @author gabrielle
- */
+* Classe Podcast representa os podcast que serão gravados e publicados.
+* 
+* @author Gabrielle Brambilla (20201PF.CC0190)
+*/
 public class Podcast {
     
     private int episodio;

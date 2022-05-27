@@ -10,24 +10,24 @@ import java.util.concurrent.ArrayBlockingQueue;
 */
 public class GravaPodcast extends Thread {
     
-    private ArrayBlockingQueue<String> filaPublicacao;
-    private String assunto;
+    private ArrayBlockingQueue<Podcast> filaPublicacao;
+    private Podcast podcast;
     
-    public GravaPodcast(ArrayBlockingQueue<String> filaPublicacao) {
+    public GravaPodcast(ArrayBlockingQueue<Podcast> filaPublicacao, Podcast podcast) {
         this.filaPublicacao = filaPublicacao;
-        this.assunto = "";
+        this.podcast = podcast;
     }
     
-    public ArrayBlockingQueue<String> getFilaPublicacao() {
+    public ArrayBlockingQueue<Podcast> getFilaPublicacao() {
         return filaPublicacao;
     }
 
-    public void setAssunto(String assunto) {
-        this.assunto = assunto;
+    public Podcast getPodcast() {
+        return podcast;
     }
 
-    public String getAssunto() {
-        return assunto;
+    public void setPodcast(Podcast podcast) {
+        this.podcast = podcast;
     }
     
     /**
@@ -57,13 +57,17 @@ public class GravaPodcast extends Thread {
     @Override
     public void run() {
         
-        while (getFilaPublicacao().remainingCapacity() >= 1) {
-                
-            setAssunto(geraAssunto());
+        int episodio = 0;
+        
+        while (getFilaPublicacao().remainingCapacity() >= 1 && episodio < 10) {
                 
             try {
                 
-                getFilaPublicacao().put(getAssunto());
+                episodio++;
+                this.podcast.setAssunto(geraAssunto());
+                this.podcast.setEpisodio(episodio);
+                
+                getFilaPublicacao().put(podcast);
                 
                 Thread.sleep(1000);
                 

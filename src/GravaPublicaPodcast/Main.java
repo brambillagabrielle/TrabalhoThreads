@@ -10,11 +10,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Main {
     
     public static void main(String[] args) {
-
-        ArrayBlockingQueue<String> filaPublicacao = new ArrayBlockingQueue<>(10);
         
-        GravaPodcast gravaPodcast = new GravaPodcast(filaPublicacao);
-        PublicaPodcast publicaPodcast = new PublicaPodcast(filaPublicacao);
+        Podcast podcast = new Podcast();
+
+        ArrayBlockingQueue<Podcast> filaPublicacao = new ArrayBlockingQueue<>(10);
+        
+        GravaPodcast gravaPodcast = new GravaPodcast(filaPublicacao, podcast);
+        PublicaPodcast publicaPodcast = new PublicaPodcast(filaPublicacao, podcast);
 
         Thread gravaPodcastThread = new Thread(gravaPodcast);
         Thread publicaPodcastThread = new Thread(publicaPodcast);

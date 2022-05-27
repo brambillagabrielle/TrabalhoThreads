@@ -10,33 +10,33 @@ import java.util.concurrent.ArrayBlockingQueue;
 */
 public class PublicaPodcast extends Thread {
     
-    private ArrayBlockingQueue<String> getFilaPublicacao;
-    private String assuntoGravado;
+    private ArrayBlockingQueue<Podcast> getFilaPublicacao;
+    private Podcast podcast;
     
-    public PublicaPodcast(ArrayBlockingQueue<String> getFilaPublicacao) {
+    public PublicaPodcast(ArrayBlockingQueue<Podcast> getFilaPublicacao, Podcast podcast) {
         this.getFilaPublicacao = getFilaPublicacao;
-        this.assuntoGravado = "";
+        this.podcast = podcast;
     }
     
-    public ArrayBlockingQueue<String> getFilaPublicacao() {
+    public ArrayBlockingQueue<Podcast> getFilaPublicacao() {
         return getFilaPublicacao;
     }
 
-    public void setAssuntoGravado(String assuntoGravado) {
-        this.assuntoGravado = assuntoGravado;
+    public Podcast getPodcast() {
+        return podcast;
     }
 
-    public String getAssuntoGravado() {
-        return assuntoGravado;
+    public void setPodcast(Podcast podcast) {
+        this.podcast = podcast;
     }
     
     /**
     * Método mostra a publicação, com o número de episódio e assunto do podcast
     * que foi publicado.
     */
-    public void mostraPublicacao(int episodio) {
-        System.out.println("Publicado: Ep #" + episodio
-                            + " - " + getAssuntoGravado());
+    public void mostraPublicacao(Podcast podcast) {
+        System.out.println("Publicado: Ep #" + this.podcast.getEpisodio()
+                            + " - " + this.podcast.getAssunto());
     }
     
     /**
@@ -56,9 +56,10 @@ public class PublicaPodcast extends Thread {
                 if (!getFilaPublicacao().isEmpty()) {
                     
                     episodio++;
+                    this.podcast.setEpisodio(episodio);
                     
-                    setAssuntoGravado(getFilaPublicacao().take());
-                    mostraPublicacao(episodio);
+                    setPodcast(getFilaPublicacao().take());
+                    mostraPublicacao(podcast);
                     
                 }
                 

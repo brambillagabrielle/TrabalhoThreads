@@ -55,6 +55,7 @@ public class PublicaPodcast extends Thread {
                     mostraPublicacao(episodio);
                     
                 }
+                
             }
             
         } catch (Exception e) {

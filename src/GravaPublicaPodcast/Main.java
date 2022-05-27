@@ -1,22 +1,25 @@
 package GravaPublicaPodcast;
 
+import java.util.concurrent.ArrayBlockingQueue;
+
 /**
-* Classe Main para implementar as classes e threads
+* Classe Main para implementar as classes de Thread e BlockingQueue.
 * 
 * @author Gabrielle Brambilla (20201PF.CC0190)
 */
-
 public class Main {
     
     public static void main(String[] args) {
-        
-        Podcast podcast = new Podcast();
-            
-        GravaPodcast threadGrava = new GravaPodcast(podcast);
-        threadGrava.start();
 
-        PublicaPodcast threadPublica = new PublicaPodcast(podcast);
-        threadPublica.start();
+        ArrayBlockingQueue<String> filaPublicacao = new ArrayBlockingQueue<>(10);
+        GravaPodcast gravaPoscast = new GravaPodcast(filaPublicacao);
+        PublicaPodcast publicaPodcast = new PublicaPodcast(filaPublicacao);
+
+        Thread gravaPodcastThread = new Thread(gravaPoscast);
+        Thread publicaPodcastThread = new Thread(publicaPodcast);
+          
+        gravaPodcastThread.start();
+        publicaPodcastThread.start();
         
     }
     
